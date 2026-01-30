@@ -1,0 +1,21 @@
+{
+  "version": 2,
+  "rewrites": [
+    {
+      "source": "/predict",
+      "destination": "api/index.py"
+    },
+    {
+      "source": "/static/(.*)",
+      "destination": "app/static/$1"
+    },
+    {
+      "source": "/",
+      "destination": "app/static/index.html"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "app/static/$1"
+    }
+  ]
+}

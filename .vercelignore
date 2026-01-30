@@ -1,0 +1,14 @@
+*.csv
+*.ipynb
+.git
+.vscode
+__pycache__
+Dockerfile
+docker-compose.yml
+PLAN_PROYECTO.md
+README.md
+INSTRUCCIONES.md
+train_model.py
+.gitignore
+.vercel
+node_modules

@@ -1,5 +1,4 @@
 import joblib
-import pandas as pd
 import os
 
 class Model:
@@ -19,12 +18,16 @@ class Model:
         if not self.model:
             raise Exception("Model not loaded")
         
-        # Ensure input data matches the model's expected format
-        # Expected columns: ['habitaciones', 'metros', 'garage', 'ascensor', 'ubicacion', 'numero_planta']
-        input_df = pd.DataFrame([data])
+        # We extract the values in the exact order the model was trained on:
+        # ['habitaciones', 'metros', 'garage', 'ascensor', 'ubicacion', 'numero_planta']
+        input_data = [[
+            data['habitaciones'],
+            data['metros'],
+            data['garage'],
+            data['ascensor'],
+            data['ubicacion'],
+            data['numero_planta']
+        ]]
         
-        # We assume the input dictionary keys match the training columns exactly
-        # Ideally, we should validate this against the model's feature_names_in_ if available
-        
-        prediction = self.model.predict(input_df)[0]
-        return prediction
+        prediction = self.model.predict(input_data)[0]
+        return float(prediction)
