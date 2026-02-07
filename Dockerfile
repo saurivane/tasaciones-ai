@@ -11,6 +11,7 @@ COPY . .
 
 # Train model during build (optional, ensures model exists in image)
 # You can also map a volume if you want persistence
+RUN pip install pandas numpy
 RUN python train_model.py
 
 # Expose port

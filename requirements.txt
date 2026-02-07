@@ -2,5 +2,3 @@ fastapi
 scikit-learn
 joblib
 python-multipart
-pandas
-numpy
