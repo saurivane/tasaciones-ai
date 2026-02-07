@@ -33,11 +33,16 @@ document.getElementById('priceForm').addEventListener('submit', async function (
         }
 
         const data = await response.json();
-        const predictedPrice = data.predicted_price;
+        let predictedPrice = data.predicted_price;
 
         // Calculate range (5%)
-        const minPrice = predictedPrice * 0.95;
-        const maxPrice = predictedPrice * 1.05;
+        let minPrice = predictedPrice * 0.95;
+        let maxPrice = predictedPrice * 1.05;
+
+        // Round to nearest thousand
+        predictedPrice = Math.round(predictedPrice / 1000) * 1000;
+        minPrice = Math.round(minPrice / 1000) * 1000;
+        maxPrice = Math.round(maxPrice / 1000) * 1000;
 
         // Format currency
         const formatter = new Intl.NumberFormat('es-ES', {
