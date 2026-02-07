@@ -40,8 +40,7 @@ docker-compose up --build
 Esto hará lo siguiente automáticamente:
 1.  Creará una "imagen" de Linux con Python (ahora incluye soporte para `pandas` y `uvicorn`).
 2.  Instalará todas las librerías necesarias.
-3.  Ejecutará `train_model.py` para re-entrenar el modelo con los datos más recientes de `analisis.csv` y guardarlo.
-4.   Iniciará el servidor web.
+3.  Iniciará el servidor web.
 
 ### Paso 3: Usar la Aplicación
 Una vez veas mensajes en la terminal indicando que el servidor está corriendo, abre tu navegador y ve a:
@@ -69,21 +68,14 @@ Si prefieres correrlo directamente en tu entorno Python local:
     pip install pandas numpy uvicorn
     ```
 
-2.  **Entrenar el modelo:**
-    ```bash
-    python train_model.py
-    ```
-    *Esto creará el archivo `app/models/rf_model.pkl`.*
-
-3.  **Iniciar el servidor:**
+2.  **Iniciar el servidor:**
     ```bash
     python -m uvicorn app.main:app --reload
     ```
 
-4.  **Acceder:** Visita `http://127.0.0.1:8000/static/index.html`
+3.  **Acceder:** Visita `http://127.0.0.1:8000/static/index.html`
 
 ## 🛠️ Descripción Técnica
 
--   **`train_model.py`**: Es el equivalente a tu Jupyter Notebook pero limpio. Carga `analisis.csv`, limpia los datos (quita columnas inútiles, rellena nulos) y entrena el Random Forest. Luego guarda el modelo en un archivo `.pkl` binario.
 -   **`app/main.py`**: Es el cerebro web. Usa FastAPI para recibir los datos del formulario web, pasárselos al modelo, y devolver la predicción.
 -   **`app/static/`**: Contiene la interfaz gráfica. Hemos usado un diseño moderno (Glassmorphism) para que se vea profesional.
