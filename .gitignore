@@ -80,3 +80,7 @@ venv.bak/
 .DS_Store
 Thumbs.db
 .vercel
+
+# Planning files
+PLAN_PROYECTO.md
+PLAN_SEO.md
