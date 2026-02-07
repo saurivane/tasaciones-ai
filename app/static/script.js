@@ -93,7 +93,7 @@ document.getElementById('priceForm').addEventListener('submit', async function (
 });
 
 // Google Sheets Integration URL (Apps Script Web App)
-const GOOGLE_SHEETS_URL = 'https://script.google.com/macros/s/AKfycbxaMfFfy1GvXQUMdg_LPc4BQUOuJ6eCIhb-uGJn-DxU-m-ObysbIqX3pDOT8a2aOJOM9g/exec';
+const GOOGLE_SHEETS_URL = 'https://script.google.com/macros/s/AKfycbyXZ_QUl96GjnvAvS3Dh9USVl6m6wl5z92pwFtN-w4Y0aP_DXLIzRD9kTyCILxu_DOZ/exec';
 
 document.getElementById('leadForm').addEventListener('submit', async function (e) {
     e.preventDefault();
@@ -104,6 +104,7 @@ document.getElementById('leadForm').addEventListener('submit', async function (e
     submitBtn.disabled = true;
 
     const leadData = {
+        direccion: document.getElementById('lead_direccion').value,
         nombre: document.getElementById('lead_nombre').value,
         email: document.getElementById('lead_email').value,
         telefono: document.getElementById('lead_telefono').value,
