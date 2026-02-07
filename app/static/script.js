@@ -74,6 +74,7 @@ document.getElementById('priceForm').addEventListener('submit', async function (
         // We use keys that match exactly what the Google Apps Script expects
         window.currentPropertyData = {
             precio_estimado: predictedPrice,
+            direccion: document.getElementById('direccion').value,
             habitaciones: formData.habitaciones,
             metros: formData.metros,
             planta: formData.numero_planta,
@@ -104,7 +105,6 @@ document.getElementById('leadForm').addEventListener('submit', async function (e
     submitBtn.disabled = true;
 
     const leadData = {
-        direccion: document.getElementById('lead_direccion').value,
         nombre: document.getElementById('lead_nombre').value,
         email: document.getElementById('lead_email').value,
         telefono: document.getElementById('lead_telefono').value,

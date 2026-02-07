@@ -3,121 +3,206 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Predicción Precio Inmueble - San Isidro Gestión</title>
+    <title>Valoración Inmobiliaria IA - San Isidro Gestión</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
-    <div class="main-wrapper">
-        <!-- Logo Section -->
-        <div class="logo-container">
-            <img src="/static/logo.png" alt="San Isidro Gestión Logo">
+
+    <!-- HERO SECTION -->
+    <header class="hero">
+        <div class="hero-overlay"></div>
+        
+        <div class="logo-badge">
+            <img src="/static/logo.png" alt="San Isidro Gestión">
         </div>
 
-        <!-- Banner Section -->
-        <div class="banner">
-            <h2>¿Sabes cuánto vale tu casa?</h2>
-            <p>Utiliza nuestra IA entrenada con datos reales del mercado para obtener una valoración profesional en segundos.</p>
-        </div>
+        <div class="hero-content">
+            <span class="pill-badge green">VALORACIÓN PROFESIONAL INMOBILIARIA</span>
+            
+            <h1>¿Cuánto vale <span class="highlight-text">tu casa</span>?</h1>
+            
+            <p class="hero-subtitle">
+                Obtén una valoración orientativa en segundos para tu vivienda con nuestra tecnología de inteligencia artificial.
+            </p>
+            
+            <a href="#calculator" class="cta-button">
+                <i class="fa-solid fa-chart-line"></i>
+                Probar Tasador Gratis
+            </a>
 
-        <!-- Calculator Form -->
-        <div class="container">
-            <h1>
-                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
-                Tasador Inteligente
-            </h1>
-            <form id="priceForm">
-                <div class="form-grid">
-                    <div class="form-group">
-                        <label for="habitaciones">Dormitorios</label>
-                        <input type="number" id="habitaciones" name="habitaciones" min="1" required placeholder="Nº de dormitorios">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="metros">Metros Construidos</label>
-                        <input type="number" id="metros" name="metros" min="10" required placeholder="Superficie en m²">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="numero_planta">Planta / Altura</label>
-                        <input type="number" id="numero_planta" name="numero_planta" step="1" required placeholder="Ej: 2">
-                        <small id="planta-hint">* 0 para Bajo, -1 si no sabe</small>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="garage">Plaza de Garaje</label>
-                        <select id="garage" name="garage">
-                            <option value="0">Sin garaje</option>
-                            <option value="1">Con garaje</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="ascensor">Ascensor</label>
-                        <select id="ascensor" name="ascensor">
-                            <option value="1">Sí tiene</option>
-                            <option value="0">No tiene</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="ubicacion">Orientación / Tipo</label>
-                        <select id="ubicacion" name="ubicacion">
-                            <option value="1">Exterior</option>
-                            <option value="0">Interior</option>
-                            <option value="-1">No estoy seguro</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="form-group full-width">
-                    <button type="submit">Calcular Valor Ahora</button>
-                </div>
-            </form>
-
-            <div id="result"></div>
-
-            <!-- Lead Generation Form -->
-            <div id="lead-form-container" style="display: none;">
-                <hr class="separator">
-                <h3 class="lead-title">¿Quieres una valoración profesional gratuita?</h3>
-                <p class="lead-subtitle">Completa tus datos y un asesor se pondrá en contacto contigo para validar el valor de tu inmueble.</p>
-                
-                <form id="leadForm">
-                    <div class="form-group">
-                        <label for="lead_direccion">Dirección del Inmueble</label>
-                        <input type="text" id="lead_direccion" name="direccion" required placeholder="Calle, número, piso...">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="lead_nombre">Nombre Completo</label>
-                        <input type="text" id="lead_nombre" name="nombre" required placeholder="Tu nombre y apellidos">
-                    </div>
-
-                    <div class="form-grid">
-                        <div class="form-group">
-                            <label for="lead_email">Correo Electrónico</label>
-                            <input type="email" id="lead_email" name="email" required placeholder="ejemplo@correo.com">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="lead_telefono">Teléfono</label>
-                            <input type="tel" id="lead_telefono" name="telefono" required placeholder="600 000 000">
-                        </div>
-                    </div>
-
-                    <div class="form-group checkbox-group">
-                        <input type="checkbox" id="lead_autorizacion" name="autorizacion" required>
-                        <label for="lead_autorizacion" class="checkbox-label">
-                            Autorizo el tratamiento de mis datos para recibir la valoración solicitada.
-                        </label>
-                    </div>
-
-                    <button type="submit" class="btn-secondary">Enviar Datos y Solicitar Cita</button>
-                </form>
+            <div class="hero-features">
+                <div class="feature-pill"><i class="fa-solid fa-database"></i> Datos 2026</div>
+                <div class="feature-pill"><i class="fa-solid fa-bolt"></i> Instantáneo</div>
+                <div class="feature-pill"><i class="fa-solid fa-check-circle"></i> 100% Gratis</div>
             </div>
         </div>
-    </div>
+    </header>
+
+    <!-- FEATURES SECTION -->
+    <section class="features-section container-width">
+        <h2 class="section-title">La potencia de la Inteligencia Artificial a tu servicio</h2>
+        <p class="section-desc">En San Isidro Gestión combinamos décadas de experiencia en el sector con la tecnología de procesamiento de datos más avanzada del mercado.</p>
+        
+        <div class="cards-grid">
+            <!-- Card 1 -->
+            <div class="feature-card">
+                <div class="icon-box">
+                    <i class="fa-solid fa-brain"></i>
+                </div>
+                <h3>IA de Vanguardia</h3>
+                <p>Utilizamos modelos avanzados entrenados con millones de datos inmobiliarios para una precisión sin precedentes.</p>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="feature-card">
+                <div class="icon-box">
+                    <i class="fa-solid fa-clock-rotate-left"></i>
+                </div>
+                <h3>Datos en Tiempo Real</h3>
+                <p>Nuestra herramienta consulta las tendencias actuales del mercado (2025-2026) para darte un precio real y ajustado.</p>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="feature-card">
+                <div class="icon-box">
+                    <i class="fa-solid fa-file-contract"></i>
+                </div>
+                <h3>Informe Profesional</h3>
+                <p>No solo recibes un número; obtienes un análisis detallado de tu zona y los factores locales que influyen en el valor.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CALCULATOR SECTION -->
+    <section id="calculator" class="calculator-section">
+        <div class="container-width">
+            <div class="calculator-wrapper">
+                <div style="text-align: center; margin-bottom: 30px;">
+                    <small>San Isidro Gestión - Valoración IA</small>
+                </div>
+
+                <form id="priceForm">
+                    <div class="form-grid">
+                        <div class="form-group" style="grid-column: span 2;">
+                            <label for="direccion">Dirección del Inmueble</label>
+                            <input type="text" id="direccion" name="direccion" required placeholder="Calle, número, piso...">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="habitaciones">Número de Dormitorios</label>
+                            <input type="number" id="habitaciones" name="habitaciones" min="1" required placeholder="Ej: 3">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="metros">Metros Construidos (m²)</label>
+                            <input type="number" id="metros" name="metros" min="10" required placeholder="Ej: 75">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="numero_planta">Planta / Altura</label>
+                            <input type="number" id="numero_planta" name="numero_planta" step="1" required placeholder="Ej: 3">
+                            <small style="font-size: 0.7em; color: #9ca3af; display: block; margin-top: 4px;">* USA 0 PARA BAJO</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="garage">Plaza de Garaje</label>
+                            <select id="garage" name="garage">
+                                <option value="0">No dispone de garaje</option>
+                                <option value="1">Sí, tiene garaje</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="ascensor">Ascensor en la finca</label>
+                            <select id="ascensor" name="ascensor">
+                                <option value="1">Sí, tiene ascensor</option>
+                                <option value="0">No tiene ascensor</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="ubicacion">Orientación / Tipo</label>
+                            <select id="ubicacion" name="ubicacion">
+                                <option value="1">Vivienda Exterior</option>
+                                <option value="0">Vivienda Interior</option>
+                                <option value="-1">No estoy seguro</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="calc-btn">CALCULAR VALOR AHORA</button>
+                    <p class="disclaimer-text">ANÁLISIS BASADO EN DATOS DEL MERCADO INMOBILIARIO DE 2026</p>
+                </form>
+
+                <!-- RESULT & LEAD FORM CONTAINER -->
+                <div id="result"></div>
+                
+                <div id="lead-form-container" style="display: none;">
+                    <h3 class="lead-title">¿Quieres validar este precio con un experto?</h3>
+                    <p class="lead-subtitle">Déjanos tus datos y te enviaremos un informe detallado sin compromiso.</p>
+                    
+                    <form id="leadForm">
+                        <div class="form-group">
+                            <label for="lead_nombre">Nombre Completo</label>
+                            <input type="text" id="lead_nombre" name="nombre" required placeholder="Tu nombre">
+                        </div>
+                        
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="lead_email">Email</label>
+                                <input type="email" id="lead_email" name="email" required placeholder="tucorreo@ejemplo.com">
+                            </div>
+                            <div class="form-group">
+                                <label for="lead_telefono">Teléfono</label>
+                                <input type="tel" id="lead_telefono" name="telefono" required placeholder="600 000 000">
+                            </div>
+                        </div>
+
+                        <div style="display: flex; align-items: start; gap: 10px; margin-top: 20px;">
+                            <input type="checkbox" id="lead_autorizacion" name="autorizacion" required style="width: 20px; height: 20px;">
+                            <label for="lead_autorizacion" style="font-weight: 400; font-size: 0.85rem;">He leído y acepto la política de privacidad y autorizo el contacto comercial.</label>
+                        </div>
+
+                        <button type="submit" class="calc-btn" style="margin-top: 20px; background: transparent; color: var(--primary-color); border: 2px solid var(--primary-color);">Solicitar Informe Gratuito</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+        <div class="container-width">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <img src="/static/logo.png" alt="Logo Footer">
+                    <p style="max-width: 300px; opacity: 0.8; font-size: 0.9rem;">
+                        Expertos en gestión inmobiliaria en Madrid. Valoraciones precisas y asesoramiento integral.
+                    </p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Contacto</h4>
+                    <p><i class="fa-solid fa-location-dot"></i> C/ Antonio López, 47 Local - 28019 Madrid</p>
+                    <p><i class="fa-solid fa-phone"></i> 91 555 55 55</p>
+                    <p><i class="fa-solid fa-envelope"></i> info@sanisidrogestion.com</p>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Horario de Atención</h4>
+                    <p>Lunes a Viernes: 9:30 - 14:00 | 17:00 - 20:30</p>
+                    <p>Sábados: 10:00 - 14:00</p>
+                </div>
+            </div>
+            <div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; text-align: center; font-size: 0.85rem; opacity: 0.6;">
+                &copy; 2026 San Isidro Gestión. Todos los derechos reservados.
+            </div>
+        </div>
+    </footer>
 
     <script src="/static/script.js"></script>
 </body>
