@@ -38,17 +38,26 @@ docker-compose up --build
 ```
 
 Esto hará lo siguiente automáticamente:
-1.  Creará una "imagen" de Linux con Python.
+1.  Creará una "imagen" de Linux con Python (ahora incluye soporte para `pandas` y `uvicorn`).
 2.  Instalará todas las librerías necesarias.
 3.  Ejecutará `train_model.py` para re-entrenar el modelo con los datos más recientes de `analisis.csv` y guardarlo.
 4.   Iniciará el servidor web.
 
 ### Paso 3: Usar la Aplicación
-Una vez veas mensajes en la terminal indicando que el servidor está corriendo (Uvicorn running on...), abre tu navegador y ve a:
+Una vez veas mensajes en la terminal indicando que el servidor está corriendo, abre tu navegador y ve a:
 
 👉 **http://localhost:8000/static/index.html**
 
-Aquí verás el formulario. Introduce los datos (habitaciones, metros, etc.) y pulsa "Calcular Precio".
+El formulario ahora incluye:
+*   **Dirección del Inmueble**: Campo obligatorio al inicio.
+*   **Cálculo IA**: Predicción de precio y rangos (mínimo/máximo) **redondeados a los millares**.
+*   **Integración Google Sheets**: Los leads y la dirección se envían automáticamente al completar el formulario de contacto.
+
+## ☁️ Despliegue en Vercel
+
+El proyecto está configurado para desplegarse en Vercel.
+*   Se han optimizado las dependencias (`requirements.txt` ligero sin pandas/numpy) para cumplir los límites de tamaño de Vercel.
+*   El archivo `vercel.json` configura las rutas estáticas y la API.
 
 ## 🐍 Ejecución Manual (Sin Docker)
 
@@ -57,6 +66,7 @@ Si prefieres correrlo directamente en tu entorno Python local:
 1.  **Instalar dependencias:**
     ```bash
     pip install -r requirements.txt
+    pip install pandas numpy uvicorn
     ```
 
 2.  **Entrenar el modelo:**
