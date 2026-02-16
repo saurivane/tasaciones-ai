@@ -1,0 +1,1 @@
+SEO Audit Results: Missing meta tags, open graph, structured data, robots.txt, sitemap.xml. Favicon missing.

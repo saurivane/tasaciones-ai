@@ -1,11 +1,17 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Request
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 from app.model import Model
+from slowapi import Limiter, _rate_limit_exceeded_handler
+from slowapi.util import get_remote_address
+from slowapi.errors import RateLimitExceeded
 import uvicorn
 import os
 
 app = FastAPI()
+limiter = Limiter(key_func=get_remote_address)
+app.state.limiter = limiter
+app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 
 # Mount static files
 app.mount("/static", StaticFiles(directory="app/static"), name="static")
@@ -27,11 +33,13 @@ class PropertyData(BaseModel):
     numero_planta: float
 
 @app.get("/")
-async def read_root():
+@limiter.limit("20/minute")
+async def read_root(request: Request):
     return {"message": "Welcome to the Property Price Predictor via FastAPI. Go to /static/index.html for the UI."}
 
 @app.post("/predict")
-async def predict(data: PropertyData):
+@limiter.limit("5/minute")
+async def predict(request: Request, data: PropertyData):
     try:
         # Convert Pydantic model to dict
         input_data = data.dict()

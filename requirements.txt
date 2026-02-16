@@ -3,3 +3,8 @@ uvicorn
 scikit-learn
 joblib
 python-multipart
+slowapi
+limits
+pytest
+pytest-asyncio
+httpx
