@@ -70,7 +70,7 @@ a {
 }
 
 .logo-badge img {
-    height: 40px;
+    height: 160px; /* Incrementado a 160px (el doble que antes) */
     display: block;
 }
 
@@ -365,7 +365,7 @@ a {
 }
 
 .footer-brand img {
-    height: 50px;
+    height: auto; /* Usando tamaño original */
     background: white;
     padding: 5px;
     border-radius: 8px;
