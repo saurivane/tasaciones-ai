@@ -454,5 +454,9 @@ a {
     .full-width-col { grid-column: auto; }
     .footer-content { flex-direction: column; }
     .logo-badge { left: 50%; transform: translateX(-50%); top: 20px; }
-    .hero-content { padding-top: 80px; }
+    .logo-badge img {
+        content: url('/static/logo.png');
+        height: 75px;
+    }
+    .hero-content { padding-top: 70px; }
 }
